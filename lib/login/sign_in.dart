@@ -49,15 +49,7 @@ class SignInPage extends StatelessWidget {
                   SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        _signInModel.trySignIn(
-                            _emailController.text,
-                            _passwordController.text,
-                                () => Navigator.of(context).pushReplacementNamed('/todo_list'),
-                                (e) {}
-                        );
-                      }
+                      _signInModel.processSignIn(context, _emailController.text, _passwordController.text);
                     },
                     child: Text("Se connecter"),
                   ),

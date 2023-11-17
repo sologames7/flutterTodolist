@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class SignInModel {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,9 +26,25 @@ class SignInModel {
       bool isSignedIn = await signIn(email, password);
       if (isSignedIn) {
         onSignInSuccess();
+
       }
     } catch (e) {
       onError(e);
+    }
+  }
+
+  void processSignIn(BuildContext context, String email, String password) async {
+    if (email.isEmpty || !email.contains('@') || password.isEmpty) {
+      return;
+    }
+
+    try {
+      bool isSignedIn = await signIn(email, password);
+      if (isSignedIn) {
+        Navigator.of(context).pushReplacementNamed('/todo_list');
+      }
+    } catch (e) {
+
     }
   }
 }

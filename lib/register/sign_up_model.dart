@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class SignUpModel {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,4 +34,20 @@ class SignUpModel {
       onError(e);
     }
   }
+
+  void processSignUp(BuildContext context, String email, String password) async {
+    if (email.isEmpty || !email.contains('@') || password.isEmpty) {
+      return;
+    }
+
+    trySignUp(
+      email,
+      password,
+          () => Navigator.of(context).pushReplacementNamed('/todo_list'),
+          (e) {
+      },
+    );
+  }
+
+
 }

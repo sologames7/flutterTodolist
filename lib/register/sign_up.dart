@@ -51,11 +51,10 @@ class SignUpPage extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        _signUpModel.trySignUp(
+                        _signUpModel.processSignUp(
+                            context,
                             _emailController.text,
-                            _passwordController.text,
-                                () => Navigator.of(context).pushReplacementNamed('/todo_list'),
-                                (e) {} // Handle error
+                            _passwordController.text
                         );
                       }
                     },
